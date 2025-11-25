@@ -1,48 +1,36 @@
-ch = input("encrypt/decrypt (e/d): ").lower()
 
-if ch == 'e':
-    g = int(input("key : "))
-    w = input("word : ")
-    if g >= 26:
-        x = (g % 26)
-        def ce():
-            pass
-    elif g <= 26:
-        x = g
-        def ce():
-            pass
-    else:
-        print("wr")
-
-elif ch == 'd':
-    g = int(input("key: "))
-    w = input("word: ")
-    if g >= 26:
-        x = (g % 26)
-        def ce():
-            pass
-    elif g <= 26:
-        x = g
-        def ce():
-            pass
-    else:
-        print("wr")
-
-else:
-    print("Invalid choice. Please enter 'e' or 'd'.")
-
-
-def ce():
-    alfabet = list("abcdefghijklmnopqrstuvwxyz")
-    d = alfabet[x:] + alfabet[:x]
+def send_msg ():
+    text =   input("input message : ")
+    key = int(input("input key : "))
     hasil = ""
-    for huruf in w:
-        if huruf in alfabet:
-            pos = alfabet.index(huruf)
-            hasil += d[pos]
+
+    mod_key = key % 26
+
+    alfabeth = list("abcdefghijklmnopqrstuvwxyz")
+    d = alfabeth[mod_key:] + alfabeth[:mod_key]
+    for huruf in text :
+        if huruf in alfabeth:
+            pos = alfabeth.index(huruf)
+            hasil += (d[pos],mod_key)
         else:
             hasil += huruf
-    print("Hasil:", hasil)
+    return hasil
+    
+def recv_msg(pesan):
+    text, key = pesan # pesan var sementara 
+
+    alfabeth = list("abcdefghijklmnopqrstuvwxyz")
+    d = alfabeth[-key:] + alfabeth[:-key]
+    dekrip = ""
+    for huruf in text :
+        pos = d.index(huruf)
+        dekrip += (alfabeth[pos])
+        
+    return dekrip
 
 
-ce()
+
+
+#def decode_msg()
+    #rs = clin.recv(2048).decode(FORMAT)
+    
